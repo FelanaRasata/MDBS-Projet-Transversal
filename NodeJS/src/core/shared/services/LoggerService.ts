@@ -21,6 +21,32 @@ export default class Loggeo {
     })
 
 
+    public static apiLogger(tokens: any, req: any, res: any): string {
+
+        // Define the colors for different status codes
+        const statusColors: any = {
+            200: ansiColors.green,
+            201: ansiColors.green,
+            204: ansiColors.blue,
+            400: ansiColors.yellow,
+            404: ansiColors.yellow,
+            500: ansiColors.red,
+        }
+
+        const status = tokens.status(req, res)
+        const coloredStatus = statusColors[status] ? statusColors[status](status) : ansiColors.cyan(status)
+        const now: string = `[${dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')}]`
+
+        return [
+            ansiColors.magenta([now, tokens.method(req, res)].join(' ')),
+            tokens.url(req, res),
+            coloredStatus,
+            tokens['response-time'](req, res), 'ms',
+        ].join(' ')
+
+    }
+
+
     public static info(message?: any, ...optionalParams: any[]): void {
 
         console.log(

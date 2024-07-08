@@ -1,5 +1,5 @@
 import { Nullable, Optional } from '@core/shared/types/CommonTypes'
-import { SwissKnife } from '@core/shared/utils/Utils'
+import { isEmpty } from '@core/shared/utils/Utils'
 
 
 export class Assert {
@@ -21,7 +21,7 @@ export class Assert {
 
     public static notEmpty<T>(value: Optional<Nullable<T>>, exception: Error): T {
 
-        if (SwissKnife.isEmpty(value)) throw exception
+        if (isEmpty(value)) throw exception
 
         return value as T
 

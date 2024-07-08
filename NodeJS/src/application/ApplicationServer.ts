@@ -7,7 +7,6 @@ import timeout from 'connect-timeout'
 import cors, { CorsOptions } from 'cors'
 import dayjs from 'dayjs'
 import express, { Express, Response } from 'express'
-import figlet from 'figlet'
 import helmet from 'helmet'
 import { createServer, Server as HttpServer } from 'http'
 import morgan from 'morgan'
@@ -131,32 +130,7 @@ export default class ApplicationServer {
         this.app.use(bodyParser.urlencoded({
             extended: true,
         }))
-
-        const customMorganLogFormat = (tokens: any, req: any, res: any): string => {
-
-            // Define the colors for different status codes
-            const statusColors: any = {
-                200: ansiColors.green,
-                201: ansiColors.green,
-                204: ansiColors.blue,
-                400: ansiColors.yellow,
-                404: ansiColors.yellow,
-                500: ansiColors.red,
-            }
-
-            const status = tokens.status(req, res)
-            const coloredStatus = statusColors[status] ? statusColors[status](status) : ansiColors.cyan(status)
-            const now: string = `[${dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')}]`
-
-            return [
-                ansiColors.magenta([now, tokens.method(req, res)].join(' ')),
-                tokens.url(req, res),
-                coloredStatus,
-                tokens['response-time'](req, res), 'ms',
-            ].join(' ')
-
-        }
-        this.app.use(morgan(customMorganLogFormat))
+        this.app.use(morgan(Loggeo.apiLogger))
 
         // Configure CORS options
         const corsOptions: CorsOptions = {
@@ -206,18 +180,9 @@ export default class ApplicationServer {
 
     log(): void {
 
-        const text: string = ansiColors.bold('Tickling the servers awake')
+        const text: string = ansiColors.bold('==========  Tickling the servers awake  =========='.toUpperCase())
 
-        if (ApiServerConfig.DEV_MODE) {
-
-            Loggeo.info(ansiColors.greenBright(`- ${text} -`))
-            return
-
-        }
-
-        const asciiArt: string = figlet.textSync(text, 'Pagga')
-
-        Loggeo.info(`\n${ansiColors.greenBright(asciiArt)}\n`)
+        Loggeo.info(ansiColors.greenBright(text))
 
     }
 
