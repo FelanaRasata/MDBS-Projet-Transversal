@@ -61,6 +61,3 @@ Swagger documentation is available at `http://localhost:<API_PORT>/api-docs` whe
 
 ---
 This README.md serves as a guide to install, run, and understand the TROQUE-TROC project. For more detailed information, please refer to the codebase and additional resources provided.
-
----
-&copy; Copyright 2023 - Aye-Aye

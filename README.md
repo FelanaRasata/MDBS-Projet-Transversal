@@ -12,3 +12,6 @@
 | Rasatarivony Andriharimanga Felana Diamondra | 43     | 22316561        |
 | Rasatarivony Andriamalala Sitraka            | 44     | 22316560        |
 | Ratsimandavana Rindratiana Holiniaina        | 48     | 22316565        |
+
+---
+&copy; Copyright Côte d'Azur University - ITU MBDS - 2023-2024
