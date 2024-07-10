@@ -1,0 +1,7 @@
+{
+  "name": "transversal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
