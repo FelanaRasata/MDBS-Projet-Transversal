@@ -1,0 +1,14 @@
+# Les répertoires binaires et de compilation
+bin/
+obj/
+
+# Les fichiers de log
+*.log
+
+# Configuration utilisateur pour Visual Studio et autres IDE
+.vscode/
+*.user
+*.suo
+
+# Les répertoires des dépendances locales
+.vs/
