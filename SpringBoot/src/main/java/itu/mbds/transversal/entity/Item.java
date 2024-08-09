@@ -1,7 +1,9 @@
 package itu.mbds.transversal.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +15,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,7 +38,7 @@ public class Item extends BaseEntity {
     Date dateCreated;
 
     @ColumnDefault("false")
-    Boolean validated;
+    Boolean enabled;
 
     @NotNull(message = "Ajoutez une image")
     @NotBlank(message = "Ajoutez une image")
@@ -44,4 +47,7 @@ public class Item extends BaseEntity {
 
     @ManyToOne
     ItemCategory itemCategory;
+
+    @ManyToOne
+    User user;
 }

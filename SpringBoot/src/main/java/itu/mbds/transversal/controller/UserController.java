@@ -3,6 +3,7 @@ package itu.mbds.transversal.controller;
 import itu.mbds.transversal.entity.User;
 import itu.mbds.transversal.service.user.UserService;
 import itu.mbds.transversal.utils.dto.response.ResponseMessage;
+import itu.mbds.transversal.utils.enumeration.EntityValue;
 import itu.mbds.transversal.utils.enumeration.Message;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-
-    private String entity = "Utilisateur";
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -48,7 +47,7 @@ public class UserController {
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ResponseMessage(Message.NOT_FOUND.byId(entity, id)));
+                    .body(new ResponseMessage(Message.NOT_FOUND.byId(EntityValue.USER, id)));
         }
 
         return ResponseEntity.ok(user);
@@ -77,7 +76,7 @@ public class UserController {
 
         if (updated == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ResponseMessage(Message.NOT_FOUND.byId(entity, id)));
+                    .body(new ResponseMessage(Message.NOT_FOUND.byId(EntityValue.USER, id)));
         }
 
         return ResponseEntity.ok(updated);
@@ -92,7 +91,7 @@ public class UserController {
 
         if (updated == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ResponseMessage(Message.NOT_FOUND.byId(entity, id)));
+                    .body(new ResponseMessage(Message.NOT_FOUND.byId(EntityValue.USER, id)));
         }
 
         return ResponseEntity.ok(updated);

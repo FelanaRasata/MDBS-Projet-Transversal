@@ -1,4 +1,4 @@
-package itu.mbds.transversal.service.ObjectCategory;
+package itu.mbds.transversal.service.itemCategory;
 
 import itu.mbds.transversal.entity.ItemCategory;
 import itu.mbds.transversal.repository.ItemCategoryRepo;
@@ -11,35 +11,31 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class ItemCategoryServiceImpl implements ItemCategoryService {
+public class ItemCategoryService {
 
     @Value("${pageable.size}")
     private int pageSize;
 
     private final ItemCategoryRepo itemCategoryRepo;
 
-    public ItemCategoryServiceImpl(ItemCategoryRepo itemCategoryRepo) {
+    public ItemCategoryService(ItemCategoryRepo itemCategoryRepo) {
         this.itemCategoryRepo = itemCategoryRepo;
     }
 
-    @Override
-    public ItemCategory findById(int id) {
+    public ItemCategory findById(long id) {
         Optional<ItemCategory> categoryOptional = itemCategoryRepo.findById(id);
         return categoryOptional.orElse(null);
     }
 
-    @Override
     public Page<ItemCategory> findAll(int page, String keyword) {
         Pageable pageable = PageRequest.of(page, pageSize);
         return itemCategoryRepo.findByTitleContainsIgnoreCase(keyword, pageable);
     }
 
-    @Override
-    public boolean exist(int id) {
+    public boolean exist(long id) {
         return itemCategoryRepo.existsById(id);
     }
 
-    @Override
     public ItemCategory save(ItemCategory itemCategory) {
         return saveOrUpdate(itemCategory);
     }
@@ -48,13 +44,11 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
         return itemCategoryRepo.save(itemCategory);
     }
 
-    @Override
-    public void delete(int id) {
+    public void delete(long id) {
         itemCategoryRepo.deleteById(id);
     }
 
-    @Override
-    public ItemCategory update(int id, ItemCategory itemCategory) {
+    public ItemCategory update(long id, ItemCategory itemCategory) {
         boolean exist = exist(id);
         if (!exist) {
             return null;

@@ -107,31 +107,4 @@ public class AuthController {
 
     }
 
-    /*@PostMapping(value = "/sign-in")
-    public ResponseEntity<?> signIn(@RequestBody AuthRequestDTO authRequestDTO) {
-
-        try {
-
-            Authentication authentication =
-                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getUsername(), loginReq.getPassword()));
-            if (authentication.isAuthenticated()) {
-                return JwtResponseDTO.builder()
-                        .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername()).build();
-            } else {
-                throw new UsernameNotFoundException("invalid user request..!!");
-            }
-
-        } catch (BadCredentialsException e) {
-
-            ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, "Invalid username or password");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-
-        } catch (Exception e) {
-
-            ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-
-        }
-
-    }*/
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class CustomUserDetails extends User implements UserDetails {
 
-    private final int id;
+    private final long id;
     private final String username;
     private final String password;
     private final boolean enabled;

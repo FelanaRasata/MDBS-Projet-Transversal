@@ -51,7 +51,8 @@ public class User extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
-    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    @ColumnDefault(value = "now()")
     Date dateCreated;
 
 }
